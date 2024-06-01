@@ -64,7 +64,7 @@ namespace piicodev {
         return (invalue == 1)
     }
 
-    //% blockId="piicodev_led_status" block="Switch LED %status"
+    //% blockId="piicodev_led_setter" block="Switch LED %status"
     //% weight=99 blockGap=20
     export function setLed(status:switchType): void {
      // TODO
