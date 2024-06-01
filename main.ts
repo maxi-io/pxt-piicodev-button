@@ -73,6 +73,14 @@ namespace piicodev {
         pins.i2cWriteBuffer(DEFAULT_BASE_ADDRESS, buf, false)
     }
 
+    //% blockId="piicodev_button_press_count" block="Get button press count"
+    //% weight=99 blockGap=20
+    export function pressCount(): number {
+        pins.i2cWriteNumber(DEFAULT_BASE_ADDRESS, registerType.pressCount, NumberFormat.Int8LE, true)
+        let count = pins.i2cReadNumber(DEFAULT_BASE_ADDRESS, NumberFormat.Int16BE, false)
+        return count
+    }
+
     //% blockId="piicodev_button_id" block="Get button Id"
     //% weight=99 blockGap=20
     export function whoAmI(): number {
