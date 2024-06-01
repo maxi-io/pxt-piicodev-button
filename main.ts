@@ -73,4 +73,12 @@ namespace piicodev {
         pins.i2cWriteBuffer(DEFAULT_BASE_ADDRESS, buf, false)
     }
 
+    //% blockId="piicodev_button_id" block="Get button Id"
+    //% weight=99 blockGap=20
+    export function whoAmI(): number {
+        pins.i2cWriteNumber(DEFAULT_BASE_ADDRESS, registerType.whoAmI, NumberFormat.Int8LE, true)
+        let deviceId = pins.i2cReadNumber(DEFAULT_BASE_ADDRESS, NumberFormat.Int16LE, false)
+        return deviceId
+    }
+
 }
