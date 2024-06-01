@@ -69,7 +69,7 @@ namespace piicodev {
     export function setLed(status:switchType): number {
         let buf = pins.createBuffer(2)
         buf[0] = 0x85
-        buf[1] = 0x01
+        buf[1] = 0x00
         return pins.i2cWriteBuffer(DEFAULT_BASE_ADDRESS, buf, false)
     }
 
