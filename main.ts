@@ -66,10 +66,11 @@ namespace piicodev {
 
     //% blockId="piicodev_led_setter" block="Switch LED %status"
     //% weight=99 blockGap=20
-    export function setLed(status:switchType): void {
-     // TODO
-     // (DEFAULT_BASE_ADDRESS, setBit(registerType.led,7), NumberFormat.Int8LE, false)
-     //   pins.i2cWriteBuffer(DEFAULT_BASE_ADDRESS,, false)
+    export function setLed(status:switchType): number {
+        let buf = pins.createBuffer(2)
+        buf[0] = 0x85
+        buf[1] = 0x01
+        return pins.i2cWriteBuffer(DEFAULT_BASE_ADDRESS, buf, false)
     }
 
 }
