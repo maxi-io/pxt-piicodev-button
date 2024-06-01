@@ -77,7 +77,7 @@ namespace piicodev {
     //% weight=99 blockGap=20
     export function whoAmI(): number {
         pins.i2cWriteNumber(DEFAULT_BASE_ADDRESS, registerType.whoAmI, NumberFormat.Int8LE, true)
-        let deviceId = pins.i2cReadNumber(DEFAULT_BASE_ADDRESS, NumberFormat.Int16LE, false)
+        let deviceId = pins.i2cReadNumber(DEFAULT_BASE_ADDRESS, NumberFormat.Int16BE, false)
         return deviceId
     }
 
