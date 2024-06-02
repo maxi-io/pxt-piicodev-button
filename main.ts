@@ -8,7 +8,7 @@ namespace piicodev {
 
     const DEFAULT_BASE_ADDRESS = 0x42;
 
-    let buttonAdress: Array<number> = [DEFAULT_BASE_ADDRESS, DEFAULT_BASE_ADDRESS, DEFAULT_BASE_ADDRESS, DEFAULT_BASE_ADDRESS];
+    let buttonAdress: Array<number> = [DEFAULT_BASE_ADDRESS, DEFAULT_BASE_ADDRESS, DEFAULT_BASE_ADDRESS, DEFAULT_BASE_ADDRESS, DEFAULT_BASE_ADDRESS, DEFAULT_BASE_ADDRESS, DEFAULT_BASE_ADDRESS, DEFAULT_BASE_ADDRESS];
 
     export enum registerType {
         //% block="Who Am I"
@@ -34,7 +34,7 @@ namespace piicodev {
     export enum switchType {
         //% block="Off"
         Off = 0,
-        //% block="On"pins.map(0, 0, 1023, 0, 4)
+        //% block="On"
         On = 1,
     }
 
