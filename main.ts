@@ -96,52 +96,52 @@ namespace piicodev {
         return x | (1 << n);
     }
 
-    //% blockId="piicodev_ispressed" block="is pressed"
+    //% blockId="piicodev_ispressed" block="is %buttonId pressed"
     //% weight=99 blockGap=20
-    export function isPressed(): boolean {
-        pins.i2cWriteNumber( DEFAULT_BASE_ADDRESS, registerType.isPressed, NumberFormat.Int8LE, false)
-        let invalue = pins.i2cReadNumber( DEFAULT_BASE_ADDRESS, NumberFormat.Int8LE, false)
+    export function isPressed(buttonId: buttonLabelType): boolean {
+        pins.i2cWriteNumber(buttonAdress[buttonId], registerType.isPressed, NumberFormat.Int8LE, false)
+        let invalue = pins.i2cReadNumber(buttonAdress[buttonId], NumberFormat.Int8LE, false)
         return (invalue==0)
     }
 
-    //% blockId="piicodev_waspressed" block="was pressed"
+    //% blockId="piicodev_waspressed" block="was %buttonId pressed"
     //% weight=99 blockGap=20
-    export function wasPressed(): boolean {
-        pins.i2cWriteNumber( DEFAULT_BASE_ADDRESS, registerType.wasPressed, NumberFormat.Int8LE, false)
-        let invalue = pins.i2cReadNumber( DEFAULT_BASE_ADDRESS, NumberFormat.Int8LE, false)
+    export function wasPressed(buttonId: buttonLabelType): boolean {
+        pins.i2cWriteNumber(buttonAdress[buttonId], registerType.wasPressed, NumberFormat.Int8LE, false)
+        let invalue = pins.i2cReadNumber(buttonAdress[buttonId], NumberFormat.Int8LE, false)
         return (invalue == 1)
     }
 
-    //% blockId="piicodev_led_status" block="is LED on"
+    //% blockId="piicodev_led_status" block="is %buttonId LED on"
     //% weight=99 blockGap=20
-    export function isLedOn(): boolean {
-        pins.i2cWriteNumber(DEFAULT_BASE_ADDRESS, registerType.led, NumberFormat.Int8LE, false)
-        let invalue = pins.i2cReadNumber(DEFAULT_BASE_ADDRESS, NumberFormat.Int8LE, false)
+    export function isLedOn(buttonId: buttonLabelType): boolean {
+        pins.i2cWriteNumber(buttonAdress[buttonId], registerType.led, NumberFormat.Int8LE, false)
+        let invalue = pins.i2cReadNumber(buttonAdress[buttonId], NumberFormat.Int8LE, false)
         return (invalue == 1)
     }
 
-    //% blockId="piicodev_led_setter" block="Switch LED %status"
+    //% blockId="piicodev_led_setter" block="Switch %buttonId LED %status"
     //% weight=99 blockGap=20
-    export function setLed(status:switchType): void {
+    export function setLed(buttonId: buttonLabelType, status:switchType): void {
         let buf = pins.createBuffer(2)
         buf[0] = setBit(registerType.led, 7) // set bit 7 to write to register
         buf[1] = status
-        pins.i2cWriteBuffer(DEFAULT_BASE_ADDRESS, buf, false)
+        pins.i2cWriteBuffer(buttonAdress[buttonId], buf, false)
     }
 
-    //% blockId="piicodev_button_press_count" block="Get button press count"
+    //% blockId="piicodev_button_press_count" block="Get %buttonId press count"
     //% weight=99 blockGap=20
-    export function pressCount(): number {
-        pins.i2cWriteNumber(DEFAULT_BASE_ADDRESS, registerType.pressCount, NumberFormat.Int8LE, true)
-        let count = pins.i2cReadNumber(DEFAULT_BASE_ADDRESS, NumberFormat.Int16BE, false)
+    export function pressCount(buttonId: buttonLabelType): number {
+        pins.i2cWriteNumber(buttonAdress[buttonId], registerType.pressCount, NumberFormat.Int8LE, true)
+        let count = pins.i2cReadNumber(buttonAdress[buttonId], NumberFormat.Int16BE, false)
         return count
     }
 
-    //% blockId="piicodev_button_id" block="Get button Id"
+    //% blockId="piicodev_button_id" block="Get button:%buttonId Id"
     //% weight=99 blockGap=20
-    export function whoAmI(): number {
-        pins.i2cWriteNumber(DEFAULT_BASE_ADDRESS, registerType.whoAmI, NumberFormat.Int8LE, true)
-        let deviceId = pins.i2cReadNumber(DEFAULT_BASE_ADDRESS, NumberFormat.Int16BE, false)
+    export function whoAmI(buttonId: buttonLabelType): number {
+        pins.i2cWriteNumber(buttonAdress[buttonId], registerType.whoAmI, NumberFormat.Int8LE, true)
+        let deviceId = pins.i2cReadNumber(buttonAdress[buttonId], NumberFormat.Int16BE, false)
         return deviceId
     }
 
